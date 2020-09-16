@@ -47,6 +47,7 @@ ipcMain.on('restart_app', () => {
 });
 
 autoUpdater.on('update-available', () => {
+    console.log('hereee');
     mainWindow.webContents.send('update_available');
 });
 autoUpdater.on('update-downloaded', () => {
