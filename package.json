@@ -1,0 +1,34 @@
+{
+  "name": "auto-update-example",
+  "version": "1.0.0",
+  "description": "electron auto update example",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder build --linux  --publish never",
+    "deploy": "electron-builder build --linux --publish always"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^10.1.2",
+    "electron-builder": "^22.8.0"
+  },
+  "build": {
+    "appId":  "com.example.ElectronAutoUpdate",
+    "linux": [
+      "deb",
+      "snap",
+      "rpm"
+    ],
+    "category": "Utility"
+  },
+  "dependencies": {
+    "electron-updater": "^4.3.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Omarmonem0/auto-update-example.git"
+  }
+}
