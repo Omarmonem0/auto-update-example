@@ -9,20 +9,29 @@
     "build": "electron-builder build --linux  --publish never",
     "deploy": "electron-builder build --linux --publish always"
   },
-  "author": "",
+  "author": "Omar Ahmed<omarmone0@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "electron": "^10.1.2",
     "electron-builder": "^22.8.0"
   },
   "build": {
-    "appId":  "com.example.ElectronAutoUpdate",
-    "linux": [
-      "deb",
-      "snap",
-      "rpm"
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "omarmonem0",
+        "repo": "auto-update-example"
+      }
     ],
-    "category": "Utility"
+    "appId": "com.example.ElectronAutoUpdate",
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "publish": [
+        "github"
+      ]
+    }
   },
   "dependencies": {
     "electron-updater": "^4.3.4"
