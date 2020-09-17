@@ -15,30 +15,6 @@
     "electron": "^10.1.2",
     "electron-builder": "^22.8.0"
   },
-  "build": {
-    "publish": [
-      {
-        "provider": "github",
-        "owner": "omarmonem0",
-        "repo": "auto-update-example"
-      }
-    ],
-    "appId": "com.example.ElectronAutoUpdate",
-    "linux": {
-      "target": [
-        "deb"
-      ],
-      "publish": [
-        "github"
-      ]
-    },
-    "win": {
-      "target": "nsis",
-      "publish": [
-        "github"
-      ]
-    }
-  },
   "dependencies": {
     "electron-updater": "^4.3.4"
   },
