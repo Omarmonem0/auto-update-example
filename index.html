@@ -30,20 +30,21 @@
 </head>
 
 <body>
-    <p>Omar Ahmed Abdelmonem</p>
-    <h1>Electron Auto Update Example</h1>
-    <h2>The new version is here!!</h2>
-    <h3>Ya Raaaab</h3>
-    <h4>Ya mosahel el 7al yarab</h4>
+    <h1 id="title">Electron Auto Update Example</h1>
     <p id="version"></p>
     <script>
         const { ipcRenderer } = require('electron');
         const version = document.getElementById('version');
-
+        const title = document.getElementById('title');
         ipcRenderer.send('app_version');
         ipcRenderer.on('app_version', (event, arg) => {
             ipcRenderer.removeAllListeners('app_version');
             version.innerText = 'Version ' + arg.version;
         });
+        ipcRenderer.on('update-available', (event,args) => {
+            ipcRenderer.removeAllListeners('update-available');
+            title.innerHTML = "Downloading new versio..."
+            version.style.display = "none";
+        })
     </script>
 </body>

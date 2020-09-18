@@ -47,22 +47,21 @@ autoUpdater.logger.transports.file.appName = 'auto update'
 autoUpdater.autoDownload = true
 autoUpdater.on('update-downloaded', () => {
     dialog.showMessageBox({
-        message: 'update Downloaded !!'
+        message: 'update downloaded please restart the app'
     })
+    autoUpdater.quitAndInstall();
 })
 
 autoUpdater.on('checking-for-update', () => {
-    console.log('checking for updates');
     autoUpdater.logger.info('checking for updates')
-    dialog.showMessageBox({
-        message: 'CHECKING FOR UPDATES In the new version!!'
-    })
 })
 
 autoUpdater.on('update-available', () => {
     dialog.showMessageBox({
-        message: ' update-available !!'
+        message: 'New update is available',
+        type: "info",
     })
+    mainWindow.webContents.send('update-available')
 })
 
 app.on('ready', () => {
