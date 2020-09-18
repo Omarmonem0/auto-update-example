@@ -1,9 +1,9 @@
 
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain , dialog} = require('electron');
 const { autoUpdater } = require('electron-updater');
+const logger = require('electron-log');
 
 let mainWindow;
-
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
@@ -17,9 +17,6 @@ function createWindow() {
         mainWindow = null;
     });
 
-    mainWindow.once('ready-to-show', () => {
-        autoUpdater.checkForUpdates();
-    });
 }
 
 app.on('ready', () => {
@@ -41,15 +38,36 @@ app.on('activate', function () {
 ipcMain.on('app_version', (event) => {
     event.sender.send('app_version', { version: app.getVersion() });
 });
+autoUpdater.channel = 'latest'
+autoUpdater.allowDowngrade = false
 
-ipcMain.on('restart_app', () => {
-    autoUpdater.quitAndInstall();
-});
+autoUpdater.logger = logger
+autoUpdater.logger.transports.file.level = 'silly'
+autoUpdater.logger.transports.file.appName = 'auto update'
+autoUpdater.autoDownload = true
+autoUpdater.on('update-downloaded', () => {
+    dialog.showMessageBox({
+        message: 'update Downloaded !!'
+    })
+})
+
+autoUpdater.on('checking-for-update', () => {
+    console.log('checking for updates');
+    autoUpdater.logger.info('checking for updates')
+    dialog.showMessageBox({
+        message: 'CHECKING FOR UPDATES !!'
+    })
+})
 
 autoUpdater.on('update-available', () => {
-    mainWindow.webContents.send('update_available');
-});
-autoUpdater.on('update-downloaded', () => {
-    mainWindow.webContents.send('update_downloaded');
-});
+    dialog.showMessageBox({
+        message: ' update-available !!'
+    })
+})
+
+app.on('ready', () => {
+    console.log('app-ready')
+    autoUpdater.logger.info("app-ready")
+    autoUpdater.checkForUpdates()
+})
 
