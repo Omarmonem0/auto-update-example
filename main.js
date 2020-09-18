@@ -55,7 +55,7 @@ autoUpdater.on('checking-for-update', () => {
     console.log('checking for updates');
     autoUpdater.logger.info('checking for updates')
     dialog.showMessageBox({
-        message: 'CHECKING FOR UPDATES !!'
+        message: 'CHECKING FOR UPDATES In the new version!!'
     })
 })
 
