@@ -2,5 +2,5 @@ appId: com.example.ElectronAutoUpdate
 publish:
   provider: github
   repo: auto-update-example
-  token: 3882fc272e96c9c42d14487c1cb611d586004b47
+  token: 8fe06cf0bdf2fcb89088ddfeaae0351c0f5a44a0
   owner: omarmonem0
